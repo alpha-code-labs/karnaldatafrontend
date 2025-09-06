@@ -22,8 +22,6 @@ import {
   Paper,
 } from '@mui/material';
 import {
-  BarChart,
-  Bar,
   XAxis,
   YAxis,
   CartesianGrid,
