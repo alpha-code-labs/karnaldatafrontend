@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import apiService from '../services/api';
 
 export const useAdvancedAnalytics = (startDate, endDate, grade) => {
@@ -6,7 +6,7 @@ export const useAdvancedAnalytics = (startDate, endDate, grade) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const fetchAdvancedAnalytics = async () => {
+  const fetchAdvancedAnalytics = useCallback(async () => {
     setLoading(true);
     setError(null);
     
@@ -24,11 +24,11 @@ export const useAdvancedAnalytics = (startDate, endDate, grade) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [startDate, endDate, grade]);
 
   useEffect(() => {
     fetchAdvancedAnalytics();
-  }, [startDate, endDate, grade]);
+  }, [fetchAdvancedAnalytics]);
 
   return { data, loading, error, refetch: fetchAdvancedAnalytics };
 };
