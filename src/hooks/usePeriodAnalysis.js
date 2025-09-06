@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import apiService from '../services/api';
 
 export const usePeriodAnalysis = (commodity, startDate, endDate, grade) => {
@@ -6,7 +6,7 @@ export const usePeriodAnalysis = (commodity, startDate, endDate, grade) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const fetchPeriodAnalysis = async () => {
+  const fetchPeriodAnalysis = useCallback(async () => {
     if (!commodity) return;
 
     setLoading(true);
@@ -26,11 +26,11 @@ export const usePeriodAnalysis = (commodity, startDate, endDate, grade) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [commodity, startDate, endDate, grade]);
 
   useEffect(() => {
     fetchPeriodAnalysis();
-  }, [commodity, startDate, endDate, grade]);  // <- Added startDate, endDate dependencies
+  }, [fetchPeriodAnalysis]);
 
   return { data, loading, error, refetch: fetchPeriodAnalysis };
 };
