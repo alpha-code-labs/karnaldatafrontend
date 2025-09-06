@@ -24,7 +24,6 @@ import {
   Legend,
   ResponsiveContainer,
 } from 'recharts';
-import { format, parseISO } from 'date-fns';
 import { useAppContext } from '../../../context/AppContext';
 import { usePeriodAnalysis } from '../../../hooks/usePeriodAnalysis';
 
