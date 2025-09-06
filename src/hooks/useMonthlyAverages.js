@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import apiService from '../services/api';
 
 export const useMonthlyAverages = (commodity, startDate, endDate, grade) => {
@@ -6,7 +6,7 @@ export const useMonthlyAverages = (commodity, startDate, endDate, grade) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const fetchMonthlyAverages = async () => {
+  const fetchMonthlyAverages = useCallback(async () => {
     if (!commodity) return;
 
     setLoading(true);
@@ -26,11 +26,11 @@ export const useMonthlyAverages = (commodity, startDate, endDate, grade) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [commodity, startDate, endDate, grade]);
 
   useEffect(() => {
     fetchMonthlyAverages();
-  }, [commodity, startDate, endDate, grade]);
+  }, [fetchMonthlyAverages]);
 
   return { data, loading, error, refetch: fetchMonthlyAverages };
 };
