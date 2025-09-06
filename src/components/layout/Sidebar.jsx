@@ -138,11 +138,13 @@ const Sidebar = () => {
         }}
         sx={{
           display: { xs: 'block', md: 'none' },
-          zIndex: theme.zIndex.drawer,
           '& .MuiDrawer-paper': {
             boxSizing: 'border-box',
             width: MOBILE_DRAWER_WIDTH,
-            zIndex: theme.zIndex.drawer,
+            zIndex: 1400,
+          },
+          '& .MuiModal-root': {
+            zIndex: 1400,
           },
         }}
       >
