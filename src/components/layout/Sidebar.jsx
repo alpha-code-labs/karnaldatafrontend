@@ -130,26 +130,26 @@ const Sidebar = () => {
     >
       {/* Mobile drawer */}
       <Drawer
-        variant="temporary"
-        open={mobileOpen}
-        onClose={() => setMobileOpen(false)}
-        ModalProps={{
-          keepMounted: true,
-        }}
-        sx={{
-          display: { xs: 'block', md: 'none' },
-          '& .MuiDrawer-paper': {
-            boxSizing: 'border-box',
-            width: MOBILE_DRAWER_WIDTH,
-            zIndex: 1400,
-          },
-          '& .MuiModal-root': {
-            zIndex: 1400,
-          },
-        }}
-      >
-        {drawer}
-      </Drawer>
+  variant="temporary"
+  open={mobileOpen}
+  onClose={() => setMobileOpen(false)}
+  ModalProps={{
+    keepMounted: true,
+    style: { zIndex: 1300 }
+  }}
+  PaperProps={{
+    style: { zIndex: 1300 }
+  }}
+  sx={{
+    display: { xs: 'block', md: 'none' },
+    '& .MuiDrawer-paper': {
+      boxSizing: 'border-box',
+      width: MOBILE_DRAWER_WIDTH,
+    },
+  }}
+>
+  {drawer}
+</Drawer>
       
       {/* Desktop drawer */}
       <Drawer
