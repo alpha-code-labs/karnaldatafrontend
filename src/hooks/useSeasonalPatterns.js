@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import apiService from '../services/api';
 
 export const useSeasonalPatterns = (commodity, grade) => {
@@ -6,7 +6,7 @@ export const useSeasonalPatterns = (commodity, grade) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const fetchSeasonalPatterns = async () => {
+  const fetchSeasonalPatterns = useCallback(async () => {
     if (!commodity) return;
 
     setLoading(true);
@@ -24,11 +24,11 @@ export const useSeasonalPatterns = (commodity, grade) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [commodity, grade]);
 
   useEffect(() => {
     fetchSeasonalPatterns();
-  }, [commodity, grade]);
+  }, [fetchSeasonalPatterns]);
 
   return { data, loading, error, refetch: fetchSeasonalPatterns };
 };
