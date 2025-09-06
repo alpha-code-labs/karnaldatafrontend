@@ -17,7 +17,7 @@ import DateFilter from '../common/DateFilter';
 const Header = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
-  const { setMobileOpen } = useAppContext();
+  const { mobileOpen, setMobileOpen } = useAppContext();
   const location = useLocation();
 
   // Routes that don't need date filtering
@@ -40,7 +40,7 @@ const Header = () => {
         backgroundColor: 'background.paper',
         color: 'text.primary',
         boxShadow: 1,
-        top: 8, // Add top margin to prevent clipping
+        top: 8,
       }}
     >
       <Toolbar>
@@ -48,7 +48,7 @@ const Header = () => {
           <IconButton
             color="inherit"
             edge="start"
-            onClick={() => setMobileOpen(true)}
+            onClick={() => setMobileOpen(!mobileOpen)}
             sx={{ mr: 2 }}
           >
             <MenuIcon />
@@ -58,7 +58,7 @@ const Header = () => {
         <Typography variant="h6" component="div" sx={{ flexGrow: 0, mr: 4 }}>
           Karnal Data
         </Typography>
-
+        
         <Box
           sx={{
             display: 'flex',
