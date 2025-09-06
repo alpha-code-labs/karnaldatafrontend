@@ -35,8 +35,6 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
-  LineChart,
-  Line,
 } from 'recharts';
 import { format, parseISO } from 'date-fns';
 import { useAppContext } from '../../../context/AppContext';
