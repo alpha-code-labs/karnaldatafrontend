@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import apiService from '../services/api';
 
 export const useLatestPrices = (commodity) => {
@@ -6,7 +6,7 @@ export const useLatestPrices = (commodity) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const fetchLatestPrices = async () => {
+  const fetchLatestPrices = useCallback(async () => {
     setLoading(true);
     setError(null);
     
@@ -19,12 +19,12 @@ export const useLatestPrices = (commodity) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [commodity]);
 
   useEffect(() => {
     if (!commodity) return;
     fetchLatestPrices();
-  }, [commodity]);
+  }, [commodity, fetchLatestPrices]);
 
   return { data, loading, error, refetch: fetchLatestPrices };
 };
