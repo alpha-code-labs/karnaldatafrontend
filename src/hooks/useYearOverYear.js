@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import apiService from '../services/api';
 
 export const useYearOverYear = (commodity, grade) => {
@@ -6,7 +6,7 @@ export const useYearOverYear = (commodity, grade) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const fetchYearOverYear = async () => {
+  const fetchYearOverYear = useCallback(async () => {
     if (!commodity) return;
 
     setLoading(true);
@@ -24,11 +24,11 @@ export const useYearOverYear = (commodity, grade) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [commodity, grade]);
 
   useEffect(() => {
     fetchYearOverYear();
-  }, [commodity, grade]);
+  }, [fetchYearOverYear]);
 
   return { data, loading, error, refetch: fetchYearOverYear };
 };
