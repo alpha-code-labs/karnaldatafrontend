@@ -302,11 +302,6 @@ const HistoricalTrends = () => {
     }
   };
 
-  const handleResetToHeaderRange = () => {
-    setCustomDateRange(null);
-    setSelectedTimeRange(null);
-  };
-
   if (loading) {
     return (
       <Box>
@@ -347,27 +342,26 @@ const HistoricalTrends = () => {
       </Typography>
 
       {/* Controls */}
-      {/* Controls */}
-        <Card sx={{ mb: 3 }}>
+      <Card sx={{ mb: 3 }}>
         <CardContent>
-            <Grid container spacing={2} alignItems="center">
+          <Grid container spacing={2} alignItems="center">
             <Grid item>
-                <GradeFilter 
+              <GradeFilter 
                 selectedGrade={selectedGrade}
                 onGradeChange={setSelectedGrade}
-                />
+              />
             </Grid>
             <Grid item xs={12} sm={8}>
-                <Box>
+              <Box>
                 <Typography variant="body2" color="text.secondary" gutterBottom>
-                    Quick Time Ranges:
+                  Quick Time Ranges:
                 </Typography>
                 <TimeRangeButtons onRangeSelect={handleTimeRangeSelect} selectedRange={selectedTimeRange} />
-                </Box>
+              </Box>
             </Grid>
-            </Grid>
+          </Grid>
         </CardContent>
-        </Card>
+      </Card>
 
       {data && (
         <>
