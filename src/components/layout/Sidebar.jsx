@@ -37,7 +37,7 @@ const iconMap = {
 };
 
 const DRAWER_WIDTH = 280;
-const MOBILE_DRAWER_WIDTH = 250; // Reduced width for mobile
+const MOBILE_DRAWER_WIDTH = 250;
 
 const Sidebar = () => {
   const theme = useTheme();
@@ -138,9 +138,11 @@ const Sidebar = () => {
         }}
         sx={{
           display: { xs: 'block', md: 'none' },
+          zIndex: theme.zIndex.drawer,
           '& .MuiDrawer-paper': {
             boxSizing: 'border-box',
-            width: MOBILE_DRAWER_WIDTH, // Use smaller width for mobile
+            width: MOBILE_DRAWER_WIDTH,
+            zIndex: theme.zIndex.drawer,
           },
         }}
       >
